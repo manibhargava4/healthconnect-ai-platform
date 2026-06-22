@@ -1,0 +1,20 @@
+CREATE COMPUTE MODULE ResponseBuilder
+
+CREATE FUNCTION Main() RETURNS BOOLEAN
+BEGIN
+
+    DELETE FIELD OutputRoot.*;
+
+    CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+
+    SET OutputRoot.JSON.Data.status = 'ACCEPTED';
+
+    SET OutputRoot.JSON.Data.message = 'Message placed on REQUEST.Q';
+
+    SET OutputRoot.JSON.Data.correlationId = Environment.Variables.CorrelationId;
+
+    RETURN TRUE;
+
+END;
+
+END MODULE;

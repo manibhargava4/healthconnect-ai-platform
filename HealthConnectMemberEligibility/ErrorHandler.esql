@@ -1,0 +1,70 @@
+
+
+CREATE COMPUTE MODULE ErrorHandler
+
+CREATE FUNCTION Main() RETURNS BOOLEAN
+BEGIN
+
+    CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+    
+	DECLARE currentRef REFERENCE TO InputExceptionList.RecoverableException;
+	DECLARE childRef REFERENCE TO currentRef;
+	DECLARE foundException BOOLEAN FALSE;
+	
+	outerloop: WHILE TRUE DO
+	
+	    SET foundException = FALSE;
+	
+	    MOVE childRef TO currentRef;
+	    MOVE childRef FIRSTCHILD;
+	
+	    innerloop: WHILE LASTMOVE(childRef) DO
+	
+	        IF POSITION('Exception' IN FIELDNAME(childRef)) > 0 THEN
+	
+	            MOVE currentRef TO childRef;
+	
+	            SET foundException = TRUE;
+	
+	            LEAVE innerloop;
+	
+	        END IF;
+	
+	        MOVE childRef NEXTSIBLING;
+	
+	    END WHILE;
+	
+	    IF NOT foundException THEN
+	        LEAVE outerloop;
+	    END IF;
+	
+	END WHILE;
+	
+	SET OutputRoot.JSON.Data.exceptionType = FIELDNAME(currentRef);
+
+	SET OutputRoot.JSON.Data.exceptionNumber =
+    CAST(currentRef.Number AS CHARACTER);
+
+	SET OutputRoot.JSON.Data.exceptionText =
+    currentRef.Text;
+
+	SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 500;
+	SET OutputRoot.JSON.Data.debugStatusCode = CAST(OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode AS CHARACTER);
+    SET OutputRoot.JSON.Data.status = 'FAILED';
+    SET OutputRoot.JSON.Data.errorCode = 'SYS001';
+    SET OutputRoot.JSON.Data.message = 'Internal server error';
+    
+    SET OutputRoot.JSON.Data.exceptionLabel = currentRef.Label;
+
+	SET OutputRoot.JSON.Data.exceptionCatalog = currentRef.Catalog;
+	
+	SET OutputRoot.JSON.Data.exceptionFile = currentRef.File;
+	
+	SET OutputRoot.JSON.Data.exceptionFunction = currentRef.Function;
+
+
+    RETURN TRUE;
+
+END;
+
+END MODULE;

@@ -1,0 +1,67 @@
+CREATE COMPUTE MODULE MemberEligibility
+
+CREATE FUNCTION Main() RETURNS BOOLEAN
+BEGIN
+
+    DECLARE memberId CHARACTER;
+    DECLARE correlationId CHARACTER;
+
+    SET correlationId = InputRoot.HTTPInputHeader."X-Correlation-Id";
+    SET memberId = InputRoot.JSON.Data.memberId;
+
+    -- Validation
+
+    IF correlationId IS NULL OR TRIM(correlationId) = '' THEN
+
+        SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+
+        DELETE FIELD OutputRoot.*;
+
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+
+        SET OutputRoot.JSON.Data.status = 'FAILED';
+        SET OutputRoot.JSON.Data.message =
+            'X-Correlation-Id header is required';
+
+        RETURN TRUE;
+
+    ELSEIF memberId IS NULL OR TRIM(memberId) = '' THEN
+
+        SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode = 400;
+
+        DELETE FIELD OutputRoot.*;
+
+        CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+
+        SET OutputRoot.JSON.Data.status = 'FAILED';
+        SET OutputRoot.JSON.Data.message =
+            'memberId is required';
+
+        RETURN TRUE;
+
+    END IF;
+
+    -- Store for ResponseBuilder
+
+    SET Environment.Variables.CorrelationId = correlationId;
+
+    -- Build MQ Message
+
+    DELETE FIELD OutputRoot.*;
+
+    CREATE LASTCHILD OF OutputRoot DOMAIN 'BLOB';
+
+    SET OutputRoot.BLOB.BLOB =
+        CAST(
+            '{' ||
+            '"eventType":"MEMBER_ELIGIBILITY_REQUEST",' ||
+            '"memberId":"' || memberId || '",' ||
+            '"correlationId":"' || correlationId || '"' ||
+            '}'
+        AS BLOB CCSID 1208);
+
+    RETURN TRUE;
+
+END;
+
+END MODULE;
