@@ -1,0 +1,398 @@
+[
+  {
+    "timestamp": "2026-06-23T16:13:49.809376",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:13:51.029452",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:13:52.177813",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:13:53.224558",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:13:54.224351",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:13:55.140991",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:13:58.216626",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:13:59.440821",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:14:01.251448",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:14:02.209010",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:14:04.106076",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:14:05.190241",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:14:06.149858",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:14:07.106025",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:14:20.230902",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:15:37.724662",
+    "queues": {
+      "REQUEST.Q": 6,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:15:40.241300",
+    "queues": {
+      "REQUEST.Q": 7,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:15:42.369290",
+    "queues": {
+      "REQUEST.Q": 8,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:15:45.369476",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:15:47.375074",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:16:30.422311",
+    "queues": {
+      "REQUEST.Q": 1,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:20:51.713123",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:20:52.790948",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:20:54.403421",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:20:55.772430",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:20:57.237140",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:20:58.742768",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:00.038140",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:01.627943",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:03.216606",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:04.700798",
+    "queues": {
+      "REQUEST.Q": 10,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:15.603868",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:16.828410",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:19.747065",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:21.381968",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:22.986643",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:24.594258",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:26.099872",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:27.653424",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:29.319248",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T16:21:30.970620",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T17:00:51.132208",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T17:17:58.062304",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  },
+  {
+    "timestamp": "2026-06-23T17:20:43.345750",
+    "queues": {
+      "REQUEST.Q": 20,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 0
+    }
+  }
+]

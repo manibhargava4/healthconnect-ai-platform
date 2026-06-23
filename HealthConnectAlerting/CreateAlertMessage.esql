@@ -1,0 +1,22 @@
+
+
+CREATE COMPUTE MODULE CreateAlertMessage
+
+CREATE FUNCTION Main() RETURNS BOOLEAN
+BEGIN
+
+    DECLARE incidentCount INTEGER;
+
+    SET incidentCount = CARDINALITY( InputRoot.JSON.Data.incidents.Item[] );
+
+    DECLARE alertMessage CHARACTER;
+
+    SET alertMessage = '{' || '"alertId":"ALT001",' || '"timestamp":"' || CAST(CURRENT_TIMESTAMP AS CHARACTER) || '",' || '"incidentCount":' || CAST(incidentCount AS CHARACTER) || '}';
+
+    SET OutputRoot.BLOB.BLOB = CAST(alertMessage AS BLOB CCSID 1208);
+
+    RETURN TRUE;
+
+END;
+
+END MODULE;
