@@ -1,7 +1,16 @@
-CREATE COMPUTE MODULE MQConsumer
+
+
+CREATE COMPUTE MODULE MQConsumer_Compute
 
 CREATE FUNCTION Main() RETURNS BOOLEAN
 BEGIN
+
+    SET OutputRoot.MQMD = InputRoot.MQMD;
+
+    SET OutputRoot.MQMD.CorrelId = InputRoot.MQMD.MsgId;
+
+    SET OutputRoot.JSON.Data.memberId = '123456';
+    SET OutputRoot.JSON.Data.status = 'ACTIVE';
 
     RETURN TRUE;
 

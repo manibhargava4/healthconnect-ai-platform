@@ -59,7 +59,8 @@ BEGIN
             '"correlationId":"' || correlationId || '"' ||
             '}'
         AS BLOB CCSID 1208);
-
+        
+        
     RETURN TRUE;
 
 END;
