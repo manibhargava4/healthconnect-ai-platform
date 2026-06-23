@@ -6,7 +6,7 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/HealthConnectMemberEligibility/icons/full/obj16/MQConsumer.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/HealthConnectMemberEligibility/icons/full/obj30/MQConsumer.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="345,514" queueName="REQUES.Q" destinationQueueManagerName="HCQM">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="345,514" queueName="REQUEST.Q" destinationQueueManagerName="HCQM">
         <translation xmi:type="utility:ConstantString" string="MQ Input"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="757,513" computeExpression="esql://routine/#MQConsumer_Compute.Main" computeMode="all">
