@@ -6,6 +6,7 @@ from datetime import datetime
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen3:8b"
+MONITOR_URL = "http://localhost:5000/monitor/queues"
 
 app = FastAPI(
     title="HealthConnect AI Service",
@@ -126,6 +127,96 @@ def save_clinical_summary(request, summary):
         json.dump(data, file, indent=4)
 
 
+def save_incident_report(request, analysis):
+
+    file_path = "data/incident_reports.json"
+
+    record = {
+        "source": "MANUAL_ANALYSIS",
+        "queue": request.queue,
+        "depth": request.depth,
+        "consumerStatus": request.consumerStatus,
+        "dlqDepth": request.dlqDepth,
+        "boqDepth": request.boqDepth,
+        "analysis": analysis,
+        "generatedAt": datetime.now().isoformat()
+    }
+
+    try:
+        with open(file_path, "r") as file:
+            data = json.load(file)
+    except:
+        data = []
+
+    data.append(record)
+
+    with open(file_path, "w") as file:
+        json.dump(data, file, indent=4)
+
+
+def get_monitoring_data():
+
+    response = requests.get(MONITOR_URL)
+
+    return response.json()
+
+
+def analyze_monitoring_data():
+
+    monitor_data = get_monitoring_data()
+
+    prompt = f"""
+You are a senior IBM MQ and IBM ACE production support engineer.
+
+Analyze the following monitoring data.
+
+Return:
+1. Severity
+2. Root Cause
+3. Recommendations
+
+Monitoring Data:
+
+{monitor_data}
+"""
+
+    response = requests.post(
+        OLLAMA_URL,
+        json={
+            "model": MODEL_NAME,
+            "prompt": prompt,
+            "stream": False
+        }
+    )
+
+    analysis = response.json()["response"]
+
+    return monitor_data, analysis
+
+
+
+def save_monitoring_analysis(monitor_data, analysis):
+
+    file_path = "data/incident_reports.json"
+
+    record = {
+        "source": "MONITORING",
+        "monitoring": monitor_data,
+        "analysis": analysis,
+        "generatedAt": datetime.now().isoformat()
+    }
+
+    try:
+        with open(file_path, "r") as file:
+            data = json.load(file)
+    except:
+        data = []
+
+    data.append(record)
+
+    with open(file_path, "w") as file:
+        json.dump(data, file, indent=4)
+
 
 @app.get("/")
 def home():
@@ -160,6 +251,30 @@ def incident_analysis(request: IncidentAnalysisRequest):
 
     analysis = generate_incident_analysis(request)
 
+    save_incident_report(request, analysis)
+
     return {
+        "analysis": analysis
+    }
+
+@app.get("/ai/incidents")
+def get_incidents():
+
+    with open("data/incident_reports.json", "r") as file:
+        return json.load(file)
+    
+
+@app.get("/ai/analyze-monitoring")
+def analyze_monitoring():
+
+    monitor_data, analysis = analyze_monitoring_data()
+
+    save_monitoring_analysis(
+        monitor_data,
+        analysis
+    )
+
+    return {
+        "monitoring": monitor_data,
         "analysis": analysis
     }

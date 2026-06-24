@@ -1,0 +1,71 @@
+[
+    {
+        "queue": "LAB.REQUEST.Q",
+        "depth": 125,
+        "consumerStatus": "STOPPED",
+        "dlqDepth": 0,
+        "boqDepth": 15,
+        "analysis": "1. **Severity**: High  \n   The queue depth of 125 indicates a significant backlog, and the consumer status being **STOPPED** means messages are not being processed. This could lead to operational delays, resource exhaustion, or application failures if the queue is critical. The BOQ depth of 15 suggests some messages are failing processing, but the absence of DLQ messages may indicate misconfigurations or incomplete error handling.\n\n2. **Root Cause**:  \n   - **Consumer Stopped**: The primary issue is that the consumer (likely an IBM ACE flow or application) is not actively processing messages, causing the queue to backlog.  \n   - **Potential Processing Failures**: The BOQ depth of 15 implies some messages are failing during processing (e.g., due to invalid data, application errors, or resource constraints), but they are not reaching the DLQ. This could be due to misconfigured backout queue settings or incomplete error handling in the consumer.  \n   - **Consumer Health**: The consumer might be hung, crashed, or blocked due to resource constraints (e.g., memory, CPU), application errors, or configuration issues (e.g., incorrect filters, routing rules).  \n\n3. **Recommendations**:  \n   - **Restart the Consumer**: Verify if the consumer (IBM ACE flow or application) is running. If stopped, restart the service or process. Check application logs for errors or crashes.  \n   - **Investigate Backout Queue**: Analyze the 15 messages in the BOQ to identify recurring errors (e.g., invalid data formats, missing headers). Ensure the backout queue is configured correctly to move failed messages.  \n   - **Monitor Queue Depth**: Track the queue depth over time. If it continues to grow, investigate why the consumer is not processing messages (e.g., resource limits, application downtime).  \n   - **Check Consumer Configuration**: Verify that the consumer is correctly configured to process messages from `LAB.REQUEST.Q`. Ensure there are no filters, routing rules, or permissions blocking message retrieval.  \n   - **Review MQ Logs**: Examine IBM MQ logs for warnings or errors related to the queue, consumers, or message processing. Look for connection issues, channel problems, or queue manager alerts.  \n   - **Test Consumer Recovery**: If the consumer is a persistent process, simulate a restart to ensure it resumes processing without data loss. Validate that messages are redelivered correctly to the queue.  \n\n**Next Steps**: Prioritize restarting the consumer and analyzing the BOQ to resolve processing failures. If the consumer remains unresponsive, investigate system resource constraints or application-specific issues.",
+        "generatedAt": "2026-06-24T17:35:18.822409"
+    },
+    {
+        "queue": "LAB.REQUEST.Q",
+        "depth": 125,
+        "consumerStatus": "STOPPED",
+        "dlqDepth": 0,
+        "boqDepth": 15,
+        "analysis": "1. **Severity**: High  \n   The queue depth is 125, and the consumer is stopped, leading to a backlog of unprocessed messages. This could cause system unavailability or data loss if not resolved promptly.  \n\n2. **Root Cause**:  \n   - **Consumer Application Failure**: The consumer (likely an IBM ACE or external application) is stopped, preventing message processing.  \n   - **Resource/Configuration Issue**: The consumer may have crashed, encountered an error, or is blocked due to resource constraints (e.g., memory, licenses) or misconfiguration.  \n   - **Message Processing Blockage**: The stopped consumer is causing messages to accumulate in the main queue (`LAB.REQUEST.Q`) without being moved to the backup queue (`BOQ`) or dead letter queue (`DLQ`).  \n\n3. **Recommendations**:  \n   - **Check Consumer Status**:  \n     - Verify if the consumer application (e.g., IBM ACE, Java app, or external system) is running.  \n     - Review logs for errors (MQ logs, application logs, or ACE traces) to identify crashes or hangs.  \n   - **Inspect MQ Configuration**:  \n     - Confirm the queue manager is operational and the queue (`LAB.REQUEST.Q`) is accessible.  \n     - Check if the backup queue (`BOQ`) is correctly configured to handle overflow (e.g., via `MQSC` commands like `ALTER QLOCAL(...)` with `BACKUPQ`).  \n   - **Temporary Mitigation**:  \n     - If the consumer cannot be restarted immediately, use `MQSC` commands to move messages from `LAB.REQUEST.Q` to a temporary queue or process them via a batch job.  \n   - **Monitor and Alert**:  \n     - Set up alerts for high queue depth (e.g., >100 messages) to prevent future outages.  \n   - **Root Cause Analysis**:  \n     - Investigate why the consumer stopped (e.g., application crash, resource exhaustion, or network issues) and address the underlying issue.  \n\n**Example MQSC Commands**:  \n```shell\nDISPLAY QSTATUS(LAB.REQUEST.Q)  \nDISPLAY QSTATUS(BOQ)  \nALTER QLOCAL(LAB.REQUEST.Q) BACKUPQ(BOQ)  \n```  \n**Next Steps**: Prioritize restarting the consumer and validating its health to resolve the backlog.",
+        "generatedAt": "2026-06-24T17:40:34.427381"
+    },
+    {
+        "queue": "LAB.REQUEST.Q",
+        "depth": 125,
+        "consumerStatus": "STOPPED",
+        "dlqDepth": 0,
+        "boqDepth": 15,
+        "analysis": "1. **Severity**: High  \n   - The queue has a significant backlog (125 messages), and consumers are stopped, risking operational delays or data loss if the issue isn't resolved promptly.\n\n2. **Root Cause**:  \n   - **Stopped Consumers**: The consumer status is \"STOPPED,\" indicating the application or process consuming messages from `LAB.REQUEST.Q` is not active or has failed.  \n   - **No DLQ Activity**: Messages are not being moved to the Dead Letter Queue (DLQ), suggesting no errors or rejections are occurring, but the consumers are simply not processing messages.  \n   - **Backup Queue (BOQ) Activity**: The BOQ depth of 15 may indicate partial or failed processing attempts, or a backup mechanism is not functioning as expected.  \n\n3. **Recommendations**:  \n   - **Check Consumer Status**:  \n     - Verify if the consumers (applications, other queues, or ACE flows) are running. Use `MQSC` commands like `DISPLAY QUEUE` or `DISPLAY CONSUMER` to confirm.  \n     - Investigate logs for the consumer application to identify if it crashed, is paused, or has resource issues (e.g., memory, connection errors).  \n   - **Validate Queue Manager Configuration**:  \n     - Ensure the queue manager is operational and there are no network or authentication issues preventing message delivery.  \n     - Check queue attributes (e.g., `MAXDEPTH`, `MSGDLQ` settings) for potential constraints.  \n   - **Inspect BOQ Behavior**:  \n     - Confirm if the BOQ is intended as a backup queue. If so, verify its configuration and ensure it is correctly handling messages.  \n     - Check if messages are being redirected to the BOQ due to processing errors or misconfigured routing rules.  \n   - **Manual Intervention (if needed)**:  \n     - If consumers are expected to resume soon, monitor the queue depth. If not, consider purging the queue (via `DLQ` or `BOQ`) to prevent further buildup, but ensure this aligns with business requirements.  \n   - **Automate Alerts**:  \n     - Set up alerts for queue depth thresholds to proactively detect similar issues in the future.  \n\n**Next Steps**: Prioritize resolving the stopped consumer issue. If the root cause is an application crash or misconfiguration, address it immediately. If the consumers are paused, restart them and ensure they can process messages without errors.",
+        "generatedAt": "2026-06-24T17:43:00.824645"
+    },
+    {
+        "queue": "LAB.REQUEST.Q",
+        "depth": 125,
+        "consumerStatus": "STOPPED",
+        "dlqDepth": 0,
+        "boqDepth": 15,
+        "analysis": "1. **Severity**: Medium  \n   The queue has a significant depth of 125 messages, and the consumer is stopped. This could lead to message backlog and potential service disruption if not resolved promptly. The DLQ depth being 0 suggests messages are not failing, but the BOQ depth of 15 may indicate partial processing or redirection, which requires investigation.\n\n2. **Root Cause**:  \n   - **Stopped Consumer**: The consumer application or channel is not active, preventing message processing. This could be due to application downtime, configuration errors, or resource issues (e.g., memory, CPU).  \n   - **Backup Queue (BOQ) Activity**: The BOQ depth of 15 suggests messages might be being redirected to the backup queue (possibly due to failed delivery attempts or misconfigured failover logic). However, the DLQ depth is 0, indicating messages are not being moved to the dead-letter queue, which could imply a misconfigured error handling mechanism.  \n\n3. **Recommendations**:  \n   - **Restart Consumer**: Verify the status of the consumer application or channel (e.g., check if the application is running, or if the MQ channel is active). Restart the consumer if it is stopped.  \n   - **Check Logs**: Review MQ manager logs and application logs for errors related to the queue (e.g., `LAB.REQUEST.Q`) or the consumer. Look for exceptions, connection issues, or resource constraints.  \n   - **Validate Queue Configuration**: Ensure the queue is correctly configured for the consumer. Confirm that the BOQ (if used) is properly set up for failover or error handling.  \n   - **Monitor Queue Depth**: Set up alerts for queue depth thresholds to prevent further backlog. Use MQ monitoring tools (e.g., `dspq` command or IBM MQ Explorer) to track trends.  \n   - **Test Failover Logic**: If the BOQ is part of a failover setup, validate that the backup queue is functioning as intended and that messages are being redirected appropriately.  \n   - **Prevent Downtime**: Implement redundancy for the consumer application and ensure high availability to avoid future disruptions.  \n\n**Next Steps**: Prioritize restarting the consumer and analyzing logs to confirm the root cause of the stoppage. If the BOQ is actively receiving messages, investigate why the consumer is not processing them.",
+        "generatedAt": "2026-06-24T17:47:02.436259"
+    },
+    {
+        "source": "MONITORING",
+        "monitoring": {
+            "consumerStatus": "RUNNING",
+            "queueManager": "HCQM",
+            "queues": {
+                "BOQ.REQUEST.Q": {
+                    "alert": false,
+                    "depth": 0,
+                    "status": "HEALTHY"
+                },
+                "HCQM.DLQ": {
+                    "alert": true,
+                    "depth": 11,
+                    "status": "CRITICAL"
+                },
+                "REQUEST.Q": {
+                    "alert": false,
+                    "depth": 0,
+                    "status": "HEALTHY"
+                },
+                "RESPONSE.Q": {
+                    "alert": false,
+                    "depth": 0,
+                    "status": "HEALTHY"
+                }
+            },
+            "status": "RUNNING",
+            "timestamp": "2026-06-24T22:17:29.743468"
+        },
+        "analysis": "1. **Severity**: High  \n   The `HCQM.DLQ` queue is in a **CRITICAL** state with a depth of 11 messages, indicating a potential backlog that could impact system reliability if not addressed promptly.\n\n2. **Root Cause**:  \n   - The **DLQ (HCQM.DLQ)** is accumulating undeliverable messages, likely due to:  \n     - **Message rejection** by destination queues (e.g., invalid destinations, authorization errors, or queue manager issues).  \n     - **Application failures** consuming messages from non-DLQ queues (e.g., `BOQ.REQUEST.Q` or `REQUEST.Q`), causing messages to be moved to DLQ.  \n     - **Routing misconfigurations** in IBM MQ or IBM ACE that incorrectly direct messages to the DLQ.  \n   - The DLQ depth threshold (likely set to 10 or lower) has been exceeded, triggering the alert.\n\n3. **Recommendations**:  \n   - **Investigate DLQ messages**: Use `DISPLAY DLQ` or MQSC commands to inspect the contents of `HCQM.DLQ` and identify the root cause of undeliverable messages (e.g., invalid destinations, application errors).  \n   - **Check destination queues**: Verify that queues referenced in DLQ messages (e.g., `BOQ.REQUEST.Q`, `REQUEST.Q`, or other destinations) are operational and accessible. Ensure there are no authorization issues or queue manager errors.  \n   - **Review application logs**: Analyze application logs for errors or exceptions related to message processing, especially for queues linked to the DLQ.  \n   - **Adjust DLQ thresholds**: If 11 is a temporary threshold, consider temporarily increasing the alert depth to avoid false positives, but prioritize resolving the underlying issue.  \n   - **Monitor DLQ trends**: Set up alerts for DLQ depth to proactively detect future issues and prevent backlog accumulation.  \n\n**Action Priority**: Address the DLQ backlog immediately to prevent cascading failures, then resolve the root cause of undeliverable messages.",
+        "generatedAt": "2026-06-24T22:20:10.920967"
+    }
+]

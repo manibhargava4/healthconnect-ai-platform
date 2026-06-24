@@ -1,0 +1,27 @@
+
+
+CREATE COMPUTE MODULE BuildIncidentRequest
+
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+
+        SET OutputRoot.JSON.Data.queue =
+            InputRoot.JSON.Data.queue;
+
+        SET OutputRoot.JSON.Data.depth =
+            InputRoot.JSON.Data.depth;
+
+        SET OutputRoot.JSON.Data.consumerStatus =
+            InputRoot.JSON.Data.consumerStatus;
+
+        SET OutputRoot.JSON.Data.dlqDepth =
+            InputRoot.JSON.Data.dlqDepth;
+
+        SET OutputRoot.JSON.Data.boqDepth =
+            InputRoot.JSON.Data.boqDepth;
+
+        RETURN TRUE;
+
+    END;
+
+END MODULE;

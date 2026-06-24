@@ -394,5 +394,41 @@
       "BOQ.REQUEST.Q": 0,
       "HCQM.DLQ": 0
     }
+  },
+  {
+    "timestamp": "2026-06-24T17:54:56.691405",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 11
+    }
+  },
+  {
+    "timestamp": "2026-06-24T17:54:58.285092",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 11
+    }
+  },
+  {
+    "timestamp": "2026-06-24T17:59:36.930643",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 11
+    }
+  },
+  {
+    "timestamp": "2026-06-24T22:17:29.743468",
+    "queues": {
+      "REQUEST.Q": 0,
+      "RESPONSE.Q": 0,
+      "BOQ.REQUEST.Q": 0,
+      "HCQM.DLQ": 11
+    }
   }
 ]
