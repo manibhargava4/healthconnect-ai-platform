@@ -1,0 +1,11 @@
+[
+    {
+        "patientId": "P1001",
+        "testName": "HbA1c",
+        "result": "8.4",
+        "unit": "%",
+        "referenceRange": "4.0-5.6",
+        "summary": "The patient's HbA1c result is 8.4%, which is above the reference range of 4.0-5.6%. This indicates a higher-than-normal level of glycated hemoglobin. The result falls outside the typical range for a healthy individual. No further interpretation or recommendations are provided.",
+        "generatedAt": "2026-06-24T16:46:36.370443"
+    }
+]
