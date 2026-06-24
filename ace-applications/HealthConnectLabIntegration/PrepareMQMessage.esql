@@ -1,0 +1,18 @@
+
+
+CREATE COMPUTE MODULE PrepareMQMessage
+
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+
+        DECLARE jsonData CHARACTER;
+
+        SET jsonData = CAST( ASBITSTREAM( InputRoot.JSON ) AS CHARACTER CCSID 1208  );
+
+        SET OutputRoot.BLOB.BLOB = CAST( jsonData  AS BLOB CCSID 1208 );
+
+        RETURN TRUE;
+
+    END;
+
+END MODULE;

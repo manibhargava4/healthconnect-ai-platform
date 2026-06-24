@@ -1,0 +1,14 @@
+
+
+CREATE COMPUTE MODULE BuildResponse
+
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+
+        SET OutputRoot.JSON.Data.message =  'Lab request submitted successfully';
+
+        RETURN TRUE;
+
+    END;
+
+END MODULE;

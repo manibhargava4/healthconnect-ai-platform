@@ -1,0 +1,20 @@
+[
+  {
+    "eventId": "A1001",
+    "eventType": "LAB_RESULT_CREATED",
+    "patientId": "P1001",
+    "timestamp": "2026-06-23T22:33:49.020408"
+  },
+  {
+    "eventId": "A1002",
+    "eventType": "LAB_RESULT_CREATED",
+    "patientId": "P1003",
+    "timestamp": "2026-06-23T23:14:34.663735"
+  },
+  {
+    "eventId": "A1003",
+    "eventType": "LAB_RESULT_CREATED",
+    "patientId": "P1004",
+    "timestamp": "2026-06-23T23:14:54.818850"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "patientId": "P1001",
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 35,
+    "gender": "Male",
+    "email": "john.doe@email.com"
+  }
+]

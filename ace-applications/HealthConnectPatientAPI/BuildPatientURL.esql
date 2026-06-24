@@ -1,0 +1,24 @@
+
+
+CREATE COMPUTE MODULE BuildPatientURL
+
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+
+        DECLARE queryString CHARACTER;
+        DECLARE patientId CHARACTER;
+
+        SET queryString = InputRoot.HTTPInputHeader."X-Query-String";
+
+        SET patientId = SUBSTRING( queryString AFTER '=' );
+
+        SET OutputRoot = InputRoot;
+        SET OutputLocalEnvironment = InputLocalEnvironment;
+
+        SET OutputLocalEnvironment.Destination.HTTP.RequestURL = 'http://localhost:5001/patients/' || patientId;
+
+        RETURN TRUE;
+
+    END;
+
+END MODULE;

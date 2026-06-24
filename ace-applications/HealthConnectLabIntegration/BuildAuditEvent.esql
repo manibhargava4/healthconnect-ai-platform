@@ -1,0 +1,40 @@
+
+
+CREATE COMPUTE MODULE BuildAuditEvent
+
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+
+        DECLARE jsonString CHARACTER;
+        DECLARE patientId CHARACTER;
+
+        SET jsonString =
+            CAST(
+                InputRoot.BLOB.BLOB
+                AS CHARACTER CCSID 1208
+            );
+
+        SET patientId =
+            SUBSTRING(
+                jsonString
+                FROM POSITION('"patientId":"' IN jsonString) + 13
+                FOR POSITION(
+                    '"' IN
+                    SUBSTRING(
+                        jsonString
+                        FROM POSITION('"patientId":"' IN jsonString) + 13
+                    )
+                ) - 1
+            );
+
+        SET OutputRoot.JSON.Data.eventType =
+            'LAB_RESULT_CREATED';
+
+        SET OutputRoot.JSON.Data.patientId =
+            patientId;
+
+        RETURN TRUE;
+
+    END;
+
+END MODULE;

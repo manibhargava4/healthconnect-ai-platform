@@ -1,0 +1,23 @@
+
+
+CREATE COMPUTE MODULE DebugPayload
+
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+
+        DECLARE jsonString CHARACTER;
+
+        SET jsonString =
+            CAST(
+                InputRoot.BLOB.BLOB
+                AS CHARACTER CCSID 1208
+            );
+
+        SET Environment.Variables.Payload =
+            jsonString;
+
+        RETURN TRUE;
+
+    END;
+
+END MODULE;
