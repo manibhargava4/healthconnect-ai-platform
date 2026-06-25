@@ -1,8 +1,8 @@
 # 🏥 HealthConnect
 
-## AI-Powered Healthcare Integration & AIOps Platform
+# AI-Powered Healthcare Integration & AIOps Platform
 
-Enterprise-grade healthcare integration platform built using IBM App Connect Enterprise (ACE), IBM MQ, Python Microservices, FastAPI, Ollama, and Qwen3.
+Enterprise-grade healthcare integration and AIOps platform built using IBM App Connect Enterprise (ACE), IBM MQ, Python Microservices, FastAPI, Docker, Docker Compose, Ollama, and Qwen3.
 
 ---
 
@@ -27,6 +27,46 @@ HealthConnect simulates a real-world healthcare integration ecosystem with:
 ✅ ACE + AI Integration
 
 ✅ AIOps Monitoring Intelligence
+
+✅ Dockerized Microservices
+
+✅ Docker Compose Orchestration
+
+---
+
+## 🐳 Dockerized Microservices Platform
+
+The complete Python platform has been containerized using Docker and Docker Compose.
+
+### Containerized Services
+
+| Service            | Port |
+| ------------------ | ---- |
+| Patient Service    | 5001 |
+| Lab Service        | 5002 |
+| Audit Service      | 5003 |
+| Monitoring Service | 5000 |
+| AI Service         | 5004 |
+
+### External Components
+
+The following components remain on the host machine:
+
+* IBM App Connect Enterprise (ACE)
+* IBM MQ
+* Ollama (Qwen3:8b)
+
+### Start Entire Platform
+
+```bash
+docker compose up --build
+```
+
+### Docker Compose Deployment
+
+![Docker Compose Running](docs/images/docker-compose-running.png)
+
+All services were successfully tested both individually and through Docker Compose.
 
 ---
 
@@ -72,7 +112,6 @@ HealthConnect simulates a real-world healthcare integration ecosystem with:
                     └────────────────────┘
 
 
-
                     ┌────────────────────┐
                     │ Monitoring Service │
                     │       :5000        │
@@ -89,6 +128,7 @@ HealthConnect simulates a real-world healthcare integration ecosystem with:
 
                     ┌────────────────────┐
                     │      Ollama        │
+                    │ Host Machine       │
                     └─────────┬──────────┘
                               │
                               ▼
@@ -97,6 +137,34 @@ HealthConnect simulates a real-world healthcare integration ecosystem with:
                     │     Qwen3:8b       │
                     └────────────────────┘
 ```
+
+---
+
+## 📸 Platform Screenshots
+
+### Docker Containers Running
+
+![Docker Containers](docs/images/docker-ps.png)
+
+All microservices running as independent Docker containers.
+
+### Docker Images
+
+![Docker Images](docs/images/docker-images.png)
+
+Docker images successfully built for all services.
+
+### AI Clinical Summary
+
+![Clinical Summary](docs/images/ai-clinical-summary.png)
+
+AI-generated clinical summaries using Ollama and Qwen3:8b.
+
+### AI Service Health Check
+
+![AI Health](docs/images/ai-health.png)
+
+AI Service running successfully inside Docker while communicating with Ollama on the host machine.
 
 ---
 
@@ -123,6 +191,12 @@ HealthConnect simulates a real-world healthcare integration ecosystem with:
 * Queue Monitoring
 * Alerting
 * Incident Detection
+* Trend Analysis
+
+### Containerization
+
+* Docker
+* Docker Compose
 
 ### DevOps
 
@@ -144,6 +218,14 @@ healthconnect-ai-platform/
 ├── AI/
 │   └── AIService/
 ├── docs/
+│   ├── images/
+│   ├── architecture.md
+│   ├── requirements.md
+│   ├── api-reference.md
+│   ├── deployment-guide.md
+│   ├── docker-guide.md
+│   └── interview-notes.md
+├── docker-compose.yml
 └── README.md
 ```
 
@@ -164,16 +246,17 @@ healthconnect-ai-platform/
 
 * Automated audit event generation
 
-### Monitoring
+### Monitoring Platform
 
-* Queue depth monitoring
-* Queue manager monitoring
-* Trend analysis
-* Incident tracking
+* Queue Depth Monitoring
+* Queue Manager Monitoring
+* Trend Analysis
+* Incident Detection
+* Alert Generation
 
 ### AI Clinical Summary
 
-Generate AI-powered summaries from lab results.
+Generate AI-powered summaries from healthcare laboratory results.
 
 ### AI Incident Analysis
 
@@ -185,7 +268,23 @@ Generate:
 
 ### AIOps Monitoring Analysis
 
-Automatically analyze monitoring metrics using AI.
+Automatically analyze monitoring metrics using local LLMs.
+
+---
+
+## 🎯 Key Achievements
+
+* Built 5 independent healthcare microservices
+* Implemented IBM ACE and IBM MQ integration
+* Implemented Request/Reply messaging patterns
+* Implemented Audit Processing architecture
+* Built Monitoring and Alerting platform
+* Integrated Local LLMs using Ollama and Qwen3
+* Built AI-powered Incident Analysis
+* Built AI-powered Clinical Summary Generation
+* Containerized complete platform using Docker
+* Orchestrated services using Docker Compose
+* Implemented container-to-host communication using host.docker.internal
 
 ---
 
@@ -201,7 +300,8 @@ Automatically analyze monitoring metrics using AI.
 | Audit Service       | ✅      |
 | Monitoring Platform | ✅      |
 | AI Platform         | ✅      |
-| Docker              | ⏳      |
+| Docker              | ✅      |
+| Docker Compose      | ✅      |
 | Kubernetes          | ⏳      |
 | CI/CD               | ⏳      |
 
@@ -213,36 +313,48 @@ Automatically analyze monitoring metrics using AI.
 * docs/requirements.md
 * docs/api-reference.md
 * docs/deployment-guide.md
+* docs/docker-guide.md
 * docs/interview-notes.md
 
 ---
 
 ## 🔮 Roadmap
 
-### Sprint 8
+### Completed
 
+* IBM MQ Messaging
+* IBM ACE Integration
+* Audit Service
+* Monitoring Platform
+* AI Platform
 * Docker
 * Docker Compose
 
-### Sprint 9
+### In Progress
 
-* Kubernetes
+* Kubernetes Deployments
+* Kubernetes Services
+* ConfigMaps
+* Secrets
 
-### Sprint 10
+### Planned
 
 * GitHub Actions CI/CD
-
-### Sprint 11
-
-* Enhanced Observability
+* Prometheus
+* Grafana
+* OpenShift Deployment
 
 ---
 
 ## 👨‍💻 Author
 
-Banka Mani Bhargava
+**Banka Mani Bhargava**
 
 IBM ACE Developer | Middleware Engineer | DevOps Engineer
+
+GitHub: https://github.com/manibhargava4
+
+LinkedIn: https://linkedin.com/in/bankamanibhargava
 
 ---
 
@@ -254,4 +366,7 @@ IBM ACE Developer | Middleware Engineer | DevOps Engineer
 * AI-Powered Operations Intelligence
 * Local LLM Integration
 * AIOps Concepts
+* Dockerized Microservices
+* Docker Compose Orchestration
 * Enterprise Integration Patterns
+* Healthcare Integration Platform
