@@ -3,10 +3,19 @@ from pydantic import BaseModel
 import requests
 import json
 from datetime import datetime
+import os
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = os.getenv(
+    "OLLAMA_URL",
+    "http://host.docker.internal:11434/api/generate"
+)
+
+MONITOR_URL = os.getenv(
+    "MONITOR_URL",
+    "http://monitoring-service:5000/monitor/queues"
+)
+
 MODEL_NAME = "qwen3:8b"
-MONITOR_URL = "http://localhost:5000/monitor/queues"
 
 app = FastAPI(
     title="HealthConnect AI Service",

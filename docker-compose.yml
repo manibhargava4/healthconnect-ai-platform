@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+
+  patient-service:
+    build:
+      context: ./PatientService
+    container_name: patient-service
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+
+  lab-service:
+    build:
+      context: ./LabService
+    container_name: lab-service
+    restart: unless-stopped
+    ports:
+      - "5002:5002"
+
+  audit-service:
+    build:
+      context: ./AuditService
+    container_name: audit-service
+    restart: unless-stopped
+    ports:
+      - "5003:5003"
+
+  monitoring-service:
+    build:
+      context: ./Monitoring
+    container_name: monitoring-service
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+
+  ai-service:
+    build:
+      context: ./AI/AIService
+    environment:
+      OLLAMA_URL: http://host.docker.internal:11434/api/generate
+      MONITOR_URL: http://monitoring-service:5000/monitor/queues
+    container_name: ai-service
+    restart: unless-stopped
+    ports:
+      - "5004:5004"
