@@ -5,7 +5,9 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-AUDIT_FILE = "audit.json"
+AUDIT_FILE = os.getenv( "AUDIT_FILE", "/app/data/audit.json")
+os.makedirs(os.path.dirname(AUDIT_FILE), exist_ok=True)
+
 
 
 def load_events():

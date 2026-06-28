@@ -5,7 +5,8 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-RESULT_FILE = "results.json"
+RESULT_FILE = os.getenv( "RESULT_FILE", "/app/data/results.json")
+os.makedirs(os.path.dirname(RESULT_FILE), exist_ok=True)
 
 
 def load_results():

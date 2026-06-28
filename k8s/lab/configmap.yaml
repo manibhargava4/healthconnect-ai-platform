@@ -8,3 +8,4 @@ metadata:
 data:
   APP_PORT: "5002"
   LOG_LEVEL: "INFO"
+  RESULT_FILE: "/app/data/results.json"

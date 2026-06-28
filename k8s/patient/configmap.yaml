@@ -8,3 +8,4 @@ metadata:
 data:
   APP_PORT: "5001"
   LOG_LEVEL: "INFO"
+  PATIENT_FILE: "/app/data/patients.json"

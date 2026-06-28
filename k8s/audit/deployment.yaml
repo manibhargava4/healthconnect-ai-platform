@@ -18,9 +18,14 @@ spec:
         app: audit-service
 
     spec:
+      volumes:
+      - name: audit-storage
+        persistentVolumeClaim:
+          claimName: audit-pvc
+
       containers:
       - name: audit-service
-        image: healthconnect-ai-platform-audit-service:v1.0.0
+        image: healthconnect-ai-platform-audit-service:v1.0.2
         imagePullPolicy: IfNotPresent
 
         envFrom:
@@ -31,6 +36,12 @@ spec:
 
         ports:
         - containerPort: 5003
+
+        volumeMounts:
+        - name: audit-storage
+          mountPath: /app/data
+
+
 
         readinessProbe:
           httpGet: 

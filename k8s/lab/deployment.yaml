@@ -18,9 +18,14 @@ spec:
         app: lab-service
 
     spec:
+      volumes:
+      - name: lab-storage
+        persistentVolumeClaim:
+          claimName: lab-pvc
+
       containers:
       - name: lab-service
-        image: healthconnect-ai-platform-lab-service:v1.0.0
+        image: healthconnect-ai-platform-lab-service:v1.0.2
         imagePullPolicy: IfNotPresent
 
         envFrom:
@@ -31,6 +36,10 @@ spec:
 
         ports:
         - containerPort: 5002
+
+        volumeMounts:
+        - name: lab-storage
+          mountPath: /app/data
 
         readinessProbe:
           httpGet: 

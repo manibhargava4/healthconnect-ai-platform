@@ -4,8 +4,8 @@ import os
 
 app = Flask(__name__)
 
-PATIENT_FILE = "patients.json"
-
+PATIENT_FILE = os.getenv( "PATIENT_FILE", "/app/data/patients.json")
+os.makedirs(os.path.dirname(PATIENT_FILE), exist_ok=True)
 
 def load_patients():
 
