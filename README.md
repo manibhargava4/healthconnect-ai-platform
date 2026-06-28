@@ -288,22 +288,91 @@ Automatically analyze monitoring metrics using local LLMs.
 
 ---
 
-## 📊 Current Status
+## Kubernetes Networking
 
-| Sprint              | Status |
-| ------------------- | ------ |
-| Foundation Setup    | ✅      |
-| Patient Service     | ✅      |
-| ACE Integration     | ✅      |
-| IBM MQ Messaging    | ✅      |
-| Lab Service         | ✅      |
-| Audit Service       | ✅      |
-| Monitoring Platform | ✅      |
-| AI Platform         | ✅      |
-| Docker              | ✅      |
-| Docker Compose      | ✅      |
-| Kubernetes          | ⏳      |
-| CI/CD               | ⏳      |
+The HealthConnect AI Platform now uses a production-style Kubernetes networking architecture.
+
+### Networking Flow
+
+```
+IBM ACE / External Client
+            │
+            ▼
+   http://healthconnect.local
+            │
+      NGINX Ingress
+            │
+ ┌──────────┼──────────┬──────────┬────────────┬──────────┐
+ ▼          ▼          ▼          ▼            ▼
+Patient     Lab      Audit    Monitoring      AI
+Service    Service   Service    Service      Service
+            │
+      ClusterIP Services
+            │
+ Persistent Volume Claims
+```
+
+### Ingress
+
+A single NGINX Ingress Controller exposes all services through one endpoint using path-based routing.
+
+| Path        | Backend Service    |
+| ----------- | ------------------ |
+| `/patients` | Patient Service    |
+| `/lab`      | Lab Service        |
+| `/audit`    | Audit Service      |
+| `/monitor`  | Monitoring Service |
+| `/ai`       | AI Service         |
+
+### Health Endpoints
+
+| Service            | Endpoint           |
+| ------------------ | ------------------ |
+| Patient Service    | `/patients/health` |
+| Lab Service        | `/lab/health`      |
+| Audit Service      | `/audit/health`    |
+| Monitoring Service | `/monitor/health`  |
+| AI Service         | `/ai/health`       |
+
+### Kubernetes Components
+
+The platform currently includes:
+
+* Namespace
+* Deployments
+* Services (ClusterIP)
+* ConfigMaps
+* Secrets
+* Persistent Volume Claims
+* Dynamic Storage Provisioning
+* Resource Requests and Limits
+* Readiness Probes
+* Liveness Probes
+* Rolling Updates
+* Rollbacks
+* NGINX Ingress
+* Path-based Routing
+
+### Current Platform Status
+
+| Component          | Status |
+| ------------------ | ------ |
+| IBM MQ             | ✅      |
+| IBM ACE            | ✅      |
+| Patient Service    | ✅      |
+| Lab Service        | ✅      |
+| Audit Service      | ✅      |
+| Monitoring Service | ✅      |
+| AI Service         | ✅      |
+| Docker             | ✅      |
+| Kubernetes         | ✅      |
+| Persistent Storage | ✅      |
+| NGINX Ingress      | ✅      |
+| Prometheus         | ⏳ Next |
+| Grafana            | ⏳      |
+| GitHub Actions     | ⏳      |
+| Helm               | ⏳      |
+| OpenShift          | ⏳      |
 
 ---
 

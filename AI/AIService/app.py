@@ -233,7 +233,7 @@ def home():
         "message": "HealthConnect AI Service"
     }
 
-@app.get("/health")
+@app.get("/ai/health")
 def health():
     return {
         "status": "UP",

@@ -12,5 +12,6 @@ spec:
     app: audit-service
 
   ports:
-  - port: 5003
+  - protocol: TCP
+    port: 80
     targetPort: 5003

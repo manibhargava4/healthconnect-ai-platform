@@ -12,5 +12,6 @@ spec:
     app: monitoring-service
 
   ports:
-  - port: 5000
+  - protocol: TCP
+    port: 80
     targetPort: 5000

@@ -69,7 +69,7 @@ def get_event(event_id):
     }), 404
 
 
-@app.route("/health", methods=["GET"])
+@app.route("/audit/health", methods=["GET"])
 def health():
     return {
         "status": "UP",

@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: patient-service
-        image: healthconnect-ai-platform-patient-service:v1.0.2
+        image: healthconnect-ai-platform-patient-service:v1.0.4
         imagePullPolicy: IfNotPresent
 
         envFrom:
@@ -38,14 +38,14 @@ spec:
 
         readinessProbe:
           httpGet: 
-            path: /health
+            path: /patients/health
             port: 5001
           initialDelaySeconds: 5
           periodSeconds: 10
 
         livenessProbe:
           httpGet:
-            path: /health
+            path: /patients/health
             port: 5001
           initialDelaySeconds: 15
           periodSeconds: 20

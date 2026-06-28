@@ -12,5 +12,6 @@ spec:
     app: ai-service
 
   ports:
-  - port: 5004
+  - protocol: TCP
+    port: 80
     targetPort: 5004

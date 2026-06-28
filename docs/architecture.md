@@ -403,35 +403,47 @@ Client
 
 ---
 
-## 10. Future Roadmap
+# 10. Current Deployment Architecture
 
-### Sprint 8
+```
+                    IBM ACE
+                       │
+                       ▼
+            healthconnect.local
+                       │
+                NGINX Ingress
+                       │
+ ┌─────────────┬────────────┬────────────┬────────────┬─────────────┐
+ ▼             ▼            ▼            ▼             ▼
+Patient     Lab Service   Audit      Monitoring     AI Service
+Service                    Service      Service
+      │           │            │             │             │
+      └────────────── Kubernetes Cluster ──────────────────┘
+                       │
+              ClusterIP Services
+                       │
+          Persistent Volume Claims
+```
 
-* Docker
+## Kubernetes Resources
 
-### Sprint 9
+Each microservice is deployed with:
 
-* Kubernetes
+* Deployment
+* ClusterIP Service
+* ConfigMap
+* Secret
+* Resource Requests
+* Resource Limits
+* Readiness Probe
+* Liveness Probe
 
-### Sprint 10
+Stateful services additionally include:
 
-* GitHub Actions CI/CD
+* Persistent Volume Claim (PVC)
+* Dynamic Storage Provisioning
 
-### Sprint 11
-
-* Enhanced Observability
-
-### Sprint 12
-
-* Performance Testing
-
-### Sprint 13
-
-* Documentation
-
-### Sprint 14
-
-* Interview Preparation
+Ingress provides a single external endpoint with path-based routing while internal communication uses ClusterIP services.
 
 ---
 

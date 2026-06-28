@@ -30,7 +30,7 @@ def incidents():
         get_incidents()
     )
 
-@app.route("/health", methods=["GET"])
+@app.route("/monitor/health", methods=["GET"])
 def health():
     return {
         "status": "UP",

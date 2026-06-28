@@ -25,7 +25,7 @@ spec:
 
       containers:
       - name: lab-service
-        image: healthconnect-ai-platform-lab-service:v1.0.2
+        image: healthconnect-ai-platform-lab-service:v1.0.3
         imagePullPolicy: IfNotPresent
 
         envFrom:
@@ -43,14 +43,14 @@ spec:
 
         readinessProbe:
           httpGet: 
-            path: /health
+            path: /lab/health
             port: 5002
           initialDelaySeconds: 5
           periodSeconds: 10
 
         livenessProbe:
           httpGet:
-            path: /health
+            path: /lab/health
             port: 5002
           initialDelaySeconds: 15
           periodSeconds: 20
