@@ -69,6 +69,13 @@ def get_result(result_id):
     }), 404
 
 
+@app.route("/health", methods=["GET"])
+def health():
+    return {
+        "status": "UP",
+        "service": "lab-service"
+    }, 200
+
 if __name__ == "__main__":
 
     app.run(

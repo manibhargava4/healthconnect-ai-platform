@@ -121,6 +121,13 @@ def delete_patient(patient_id):
         "error": "Patient not found"
     }), 404
 
+@app.route("/health", methods=["GET"])
+def health():
+    return {
+        "status": "UP",
+        "service": "patient-service"
+    }, 200
+
 
 if __name__ == "__main__":
 

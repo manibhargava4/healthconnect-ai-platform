@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: patient-config
+  namespace: healthconnect
+
+data:
+  APP_PORT: "5001"
+  LOG_LEVEL: "INFO"

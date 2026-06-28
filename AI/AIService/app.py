@@ -237,7 +237,7 @@ def home():
 def health():
     return {
         "status": "UP",
-        "service": "AIService",
+        "service": "ai-Service",
         "provider": "Ollama",
         "model": "qwen3:8b"
     }

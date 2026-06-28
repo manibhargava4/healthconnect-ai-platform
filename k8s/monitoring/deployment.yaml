@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: monitoring-service
+  namespace: healthconnect
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: monitoring-service
+
+  template:
+    metadata:
+      labels:
+        app: monitoring-service
+
+    spec:
+      containers:
+      - name: monitoring-service
+        image: healthconnect-ai-platform-monitoring-service:v1.0.0
+        imagePullPolicy: IfNotPresent
+
+        envFrom:
+        - configMapRef:
+            name: monitoring-config
+        - secretRef:
+            name: monitoring-secret
+
+        ports:
+        - containerPort: 5000
+
+        readinessProbe:
+          httpGet: 
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 20
+
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
